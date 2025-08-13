@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Edu AI — Belajar Seru & Adaptif</title>
+  <meta name="description" content="Edu AI ramah anak: rekomendasi belajar seru & adaptif dengan warna cerah dan quiz interaktif." />
+  <!-- Font ramah anak -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- MASKOT -->
+   
+  <button class="mascot" id="mascotBtn" aria-label="Maskot Edu">
+    <!-- Maskot SVG bergaya kartun -->
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FFB703"/>
+          <stop offset="1" stop-color="#FB8500"/>
+        </linearGradient>
+      </defs>
+      <circle cx="60" cy="60" r="55" fill="url(#g1)"/>
+      <circle cx="42" cy="52" r="8" fill="#fff"/>
+      <circle cx="78" cy="52" r="8" fill="#fff"/>
+      <circle cx="44" cy="52" r="4" fill="#333"/>
+      <circle cx="80" cy="52" r="4" fill="#333"/>
+      <path d="M40 78c12 10 28 10 40 0" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M25 35c20-8 50-8 70 0" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+    </svg>
+    <span class="mascot-badge">Hai!</span>
+  </button>
+  <div class="mascot-popover" id="mascotPop">
+    <p><strong>Halo!</strong> Aku <em>Bibo</em> 🐣. Yuk pilih topik, isi profil singkat, dan aku buatkan rencana belajarmu!</p>
+    <div class="pop-actions">
+      <button class="btn solid" data-goto="reco">Buat Rencana</button>
+      <button class="btn light" data-goto="materi">Lihat Materi</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="wrap head-inner">
+      <div class="brand">
+        <span class="logo">🎒</span>
+        <div>
+          <h1>Edu AI</h1>
+          <p class="tag">Belajar Seru, Pintar, dan Aman</p>
+        </div>
+      </div>
+      <nav class="nav" id="nav">
+        <button class="nav-btn active" data-target="home">🏠 Beranda</button>
+        <button class="nav-btn" data-target="reco">🧠 Rekomendasi</button>
+        <button class="nav-btn" data-target="materi">📚 Materi</button>
+        <button class="nav-btn" data-target="quiz">📝 Quiz</button>
+        <button class="nav-btn" data-target="progress">📈 Progress</button>
+        <button class="nav-btn" data-target="about">💡 Tentang</button>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="wrap">
+        <div class="hero">
+          <div class="hero-text">
+            <h2>Belajar jadi <span>menyenangkan!</span> 🎉</h2>
+            <p>Edu AI menyesuaikan cara belajar sesuai <strong>minat</strong>, <strong>tingkat</strong>, dan <strong>waktu</strong> kamu. Ada rencana belajar, materi seru, dan quiz!</p>
+            <div class="hero-actions">
+              <button class="btn solid" data-goto="reco">Mulai Sekarang</button>
+              <button class="btn ghost" data-goto="materi">Jelajah Materi</button>
+            </div>
+            <ul class="chips">
+              <li>Warna cerah</li>
+              <li>Tombol besar</li>
+              <li>Ramah anak</li>
+            </ul>
+            <header>
+        <h1>🎓 Edu AI - Sahabat Belajar</h1>
+        <p>Tanya apa saja, Edu AI siap membantu kamu belajar!</p>
+    </header>
+
+    <main>
+        <div class="chat-container" id="chatContainer">
+            <div class="message ai">Hai! Aku Edu AI, ayo belajar bareng 😊</div>
+        </div>
+
+        <form id="aiForm" class="chat-form">
+  <input type="text" id="userInput" placeholder="Tulis pertanyaan kamu di sini..." required aria-label="Pertanyaan">
+  <button type="submit" class="send-btn" aria-label="Kirim pesan">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 21l20-9L2 3v7l15 2-15 2v7z" fill="currentColor"/>
+    </svg>
+    <span class="btn-text">Kirim</span>
+  </button>
+</form>
+
+
+        <section class="recommendations">
+            <h2>📚 Rekomendasi Belajar Selanjutnya</h2>
+            <ul id="recommendationList">
+                <li>Mulai bertanya agar rekomendasi muncul...</li>
+            </ul>
+        </section>
+    </main>
+          </div>
+          <div class="hero-illust" aria-hidden="true">
+            <div class="float book">📗</div>
+            <div class="float bulb">💡</div>
+            <div class="float star">⭐</div>
+            <div class="float rocket">🚀</div>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card happy">
+            <h3>✨ Rekomendasi Pintar</h3>
+            <p>Isi profil singkat → dapat rencana belajar 4–6 sesi yang pas buatmu.</p>
+          </article>
+          <article class="card mint">
+            <h3>🎮 Belajar Interaktif</h3>
+            <p>Materi ringkas, video pilihan, dan quiz ringan.</p>
+          </article>
+          <article class="card sky">
+            <h3>🛡️ Aman & Nyaman</h3>
+            <p>Data disimpan di browser kamu. Tanpa login.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REKOMENDASI -->
+    <section id="reco" class="page">
+      <div class="wrap">
+        <h2>🧠 Rekomendasi Belajar</h2>
+        <p class="sub">Isi dulu ya, nanti Bibo buatkan rencananya!</p>
+        <div class="grid">
+          <form id="recoForm" class="panel">
+            <div class="row">
+              <label>Nama
+                <input name="name" placeholder="Nama kamu" required />
+              </label>
+              <label>Topik
+                <select name="topic">
+                  <option value="ai-dasar">AI Dasar</option>
+                  <option value="ml-pemula">Machine Learning</option>
+                  <option value="matematika">Matematika</option>
+                  <option value="ipa">IPA</option>
+                  <option value="bahasa">Bahasa Indonesia</option>
+                  <option value="informatika">Informatika</option>
+                </select>
+              </label>
+            </div>
+            <div class="row">
+              <label>Tingkat
+                <select name="level">
+                  <option value="beginner">Pemula</option>
+                  <option value="intermediate">Menengah</option>
+                  <option value="advanced">Lanjut</option>
+                </select>
+              </label>
+              <label>Tujuan
+                <select name="goal">
+                  <option value="konsep">Paham Konsep</option>
+                  <option value="projek">Proyek Mini</option>
+                  <option value="ujian">Siap Ujian</option>
+                </select>
+              </label>
+              <label>Waktu / hari
+                <select name="time">
+                  <option value="15">15 menit</option>
+                  <option value="30">30 menit</option>
+                  <option value="60">60 menit</option>
+                </select>
+              </label>
+            </div>
+            <div class="row">
+              <label>Gaya Belajar
+                <select name="style">
+                  <option value="visual">Visual</option>
+                  <option value="auditori">Auditori</option>
+                  <option value="kinestetik">Kinestetik</option>
+                </select>
+              </label>
+              <label>Perangkat
+                <select name="device">
+                  <option value="smartphone">Smartphone</option>
+                  <option value="tablet">Tablet</option>
+                  <option value="pc">PC/Laptop</option>
+                </select>
+              </label>
+              <label>Koneksi
+                <select name="bandwidth">
+                  <option value="low">Rendah</option>
+                  <option value="medium">Sedang</option>
+                  <option value="high">Tinggi</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="btn solid" type="submit">Buat Rencana 🎯</button>
+              <button class="btn light" type="button" id="exportBtn">Export .json</button>
+              <label class="btn ghost" for="importInput">Import .json</label>
+              <input type="file" id="importInput" accept="application/json" hidden />
+              <button class="btn danger" type="button" id="resetBtn">Reset</button>
+            </div>
+          </form>
+
+          <div class="panel" id="planPanel">
+            <h3>📅 Rencana Belajar</h3>
+            <div id="planArea" class="plan-area muted">Belum ada rencana. Isi formulir di kiri ya.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATERI -->
+    <section id="materi" class="page">
+      <div class="wrap">
+        <h2>📚 Materi Seru</h2>
+        <p class="sub">Pilih topik yang kamu suka. Ada ringkasan & video!</p>
+        <div id="subjectsRow" class="subjects"></div>
+
+        <div id="subjectDetail" class="panel hidden">
+          <div class="detail-head">
+            <h3 id="subName">—</h3>
+            <span id="metaInfo" class="muted">—</span>
+          </div>
+          <div class="detail-body">
+            <div class="left">
+              <p id="subIntro" class="muted"></p>
+              <div class="bubble">
+                <p id="subContent"></p>
+              </div>
+              <h4>Mini Quiz</h4>
+              <div id="miniQuizArea"></div>
+            </div>
+            <div class="right">
+              <h4>Referensi</h4>
+              <ul id="videosId" class="links"></ul>
+              <ul id="videosEn" class="links"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>💾 Rencana Tersimpan</h3>
+          <div id="plansArea" class="saved">Belum ada rencana.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="page">
+      <div class="wrap">
+        <h2>📝 Quiz Ringan</h2>
+        <form id="quizSetup" class="panel">
+          <div class="row">
+            <label>Topik
+              <select name="qTopic">
+                <option value="ai-dasar">AI Dasar</option>
+                <option value="ml-pemula">Machine Learning</option>
+                <option value="matematika">Matematika</option>
+                <option value="ipa">IPA</option>
+                <option value="bahasa">Bahasa Indonesia</option>
+                <option value="informatika">Informatika</option>
+              </select>
+            </label>
+            <label>Level
+              <select name="qLevel">
+                <option value="beginner">Pemula</option>
+                <option value="intermediate">Menengah</option>
+                <option value="advanced">Lanjut</option>
+              </select>
+            </label>
+            <button class="btn solid" type="submit">Buat Soal</button>
+          </div>
+        </form>
+
+        <div class="panel">
+          <h3>Soal</h3>
+          <div id="quizArea" class="bubble muted">Belum ada soal.</div>
+          <div class="form-actions">
+            <button id="checkQuiz" class="btn solid" disabled>Periksa</button>
+            <span id="quizResult" class="muted"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="progress" class="page">
+      <div class="wrap">
+        <h2>📈 Progress Kamu</h2>
+        <div class="panel">
+          <div id="progressContainer">Belum ada progress.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <div class="wrap">
+        <h2>💡 Tentang Edu AI</h2>
+        <div class="about">
+          <div class="panel sun">
+            <h3>Misi</h3>
+            <p>Membuat belajar jadi <strong>seru</strong>, <strong>mudah</strong>, dan <strong>aman</strong> untuk semua anak.</p>
+          </div>
+          <div class="panel grass">
+            <h3>Prinsip</h3>
+            <ul>
+              <li>Ramah anak 👦👧</li>
+              <li>Privasi terjaga 🔒</li>
+              <li>Inklusif & menyenangkan 🌈</li>
+            </ul>
+          </div>
+          <div class="panel sky">
+            <h3>Roadmap</h3>
+            <ol>
+              <li>Integrasi AI beneran (opsional)</li>
+              <li>Bank soal adaptif</li>
+              <li>Gamifikasi poin & badge</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <small>© 2025 Edu AI — Dibuat dengan cinta dan warna ceria 🎨</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
